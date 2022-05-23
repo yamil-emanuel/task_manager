@@ -1,0 +1,41 @@
+<header>
+	<h1>TO DO LIST</h1>
+</header>
+
+<details class="taskcard" *ngFor="let item of tasks">
+	<p>{{item.body}}</p>
+		<summary>
+			<table style="width:100%;">
+				<tr style="width:100%;">
+					<td style="width: 75%; text-align: left;">
+						<h3>{{item.title|uppercase}}</h3>
+					</td>
+					<td style="width: 25%; color:rgba(0,0,0,0.1)">
+						<h3>{{item.minutes}}"</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: left;">
+						<p *ngIf="item.target_date==today_string"> HOY</p>
+						<p *ngIf="item.target_date==tomorrow">MAÑANA</p>
+						<p *ngIf="item.target_date!==today_string && item.target_date !== tomorrow">{{item.target_date}}</p>
+
+					</td>
+				</tr>
+			</table>
+		</summary>
+	<input type="button" (click)="deleteTask(item.id)" class="btn-delete" value="DELETE">
+</details> 
+
+<details id="NewTask">
+	<summary>
+		<h3>Nueva tarea</h3>
+	</summary>
+	<form>
+		<input #user_date type="date" name="" placeholder="¿Cuándo?"><br>
+		<input #user_title type="text" name="" placeholder="¿Qué?"><br>
+		<input #user_description type="text" name="" placeholder="Description"><br>
+		<input #user_minutes type="number" name="" placeholder="Minutos necesarios"><br>
+		<input (click)="newTask(user_title.value, user_description.value, user_minutes.value, user_date.value)"  type="button" value="SEND">
+	</form>
+</details>

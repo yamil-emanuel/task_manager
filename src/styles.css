@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+	color: rgb(76, 75, 99);
+	background-color: rgb(213, 179, 255);
+	text-align: center;
+	margin: 0;
+}
