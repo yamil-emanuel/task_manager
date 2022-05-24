@@ -66,12 +66,12 @@
 			</tr>
 		</table>
 	</summary>
-	<form>
-		<input #user_date type="date" name="" placeholder="¿Cuándo?"><br>
-		<input #user_title type="text" name="" placeholder="¿Qué?"><br>
+	<form #taskform>
+		<input #user_date type="date" name="" value="{{today_string}}"><br>
+		<input #user_title type="text" placeholder="¿Qué?"><br>
 		<input #user_description type="text" name="" placeholder="Description"><br>
-		<input #user_minutes type="number" name="" placeholder="Minutos necesarios"><br>
+		<input #user_minutes type="number" min="0" max="600" step="15" placeholder="Minutos necesarios"><br>
 
-		<input (click)="newTask(user_title.value, user_description.value, user_minutes.value, user_date.value)"  type="button" value="SEND">
+		<input (click)="newTask(user_title.value, user_description.value, user_minutes.value, user_date.value, taskform)"  type="button" value="SEND">
 	</form>
 </details>

@@ -10,6 +10,7 @@ export class TaskManagerComponent implements OnInit {
   today = new Date();  
   today_string = new Date().toISOString().slice(0, 10);
 
+  minutes= 0;
 
   tomorrow=this.getTomorrow();
   tasks: any[] = [];
@@ -23,6 +24,15 @@ export class TaskManagerComponent implements OnInit {
       return 1;
     }
     return 0;
+  }
+
+  getWorkTime(){
+    for (let i = 0; i< this.tasks.length; i++ ){
+      if (this.tasks[i].target_date==this.today_string && this.tasks[i].minutes!= "" && this.tasks[i].status == false){
+        this.minutes=this.minutes+parseInt(this.tasks[i].minutes);
+        console.log(this.minutes)
+      }
+    }
   }
 
   getStoredData(){
@@ -64,15 +74,19 @@ export class TaskManagerComponent implements OnInit {
   setDone(taskId:string){
     /*
     INPUT: task.id:string
-    Searchs for the localStorage object, updates it and reloads the stored data (refresh elements)*/
+    Searchs for the localStorage object, 
+    updates it and reloads the stored data (refresh elements)
+    */
+
     var t = window.localStorage.getItem(taskId)
     var p = t ? JSON.parse(t):{};
     p.status=true;
-    window.localStorage.setItem(p.id, JSON.stringify(p))
-    this.getStoredData()
+    window.localStorage.setItem(p.id, JSON.stringify(p)) //updates db
+    this.getStoredData() //refresh
+    this.getWorkTime() //refresh
   }
 
-  newTask(title:String, body:String, minutes:String, target_date:String){
+  newTask(title:String, body:String, minutes:String, target_date:String, form:Object){
     //Input: title, body/description, how long the task is supposed to durate and the target date.
     //Output: Data stored in localStorage + task_list refreshed
     var id = Date.now().toString()
@@ -87,6 +101,7 @@ export class TaskManagerComponent implements OnInit {
 
     window.localStorage.setItem(data.id , JSON.stringify(data)); //save data
     this.getStoredData() //reset the current task_list
+    this.getWorkTime()
   }
 
   deleteTask(item:String){
@@ -98,6 +113,7 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit(): void {
 
     this.getStoredData() //retrieve tasks from localStorage
+    this.getWorkTime()
   }
 
 }
