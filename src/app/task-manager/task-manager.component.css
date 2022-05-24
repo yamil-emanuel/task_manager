@@ -59,6 +59,7 @@ header{
 .taskcard input{
 	width: 30%;
 	margin-bottom: 3vh;
+	margin-top: 1vh;
 }
 
 /* SUMMARY AND DETAILS */

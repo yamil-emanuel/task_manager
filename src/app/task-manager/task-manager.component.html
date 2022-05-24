@@ -14,8 +14,8 @@
 						<h3>{{item.minutes}}"</h3>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2" style="text-align: left;">
+				<tr style="border-top:  5px solid rgba(0,0,0,0.3)">
+					<td colspan="2" style="text-align: center; color:rgb(0,0,0,0.5);">
 						<p *ngIf="item.target_date==today_string"> HOY</p>
 						<p *ngIf="item.target_date==tomorrow">MAÑANA</p>
 						<p *ngIf="item.target_date!==today_string && item.target_date !== tomorrow">{{item.target_date}}</p>
@@ -29,7 +29,14 @@
 
 <details id="NewTask">
 	<summary>
-		<h3>Nueva tarea</h3>
+		<table style="width: 100%; height: 100%;">
+			<tr style="width: 100%; height: 100%; 	border-bottom: 2px solid rgb(180, 160, 229);">
+				<td style="width: 100%; height: 100%; vertical-align: middle;">
+					<h3>Nueva tarea</h3>
+
+				</td>
+			</tr>
+		</table>
 	</summary>
 	<form>
 		<input #user_date type="date" name="" placeholder="¿Cuándo?"><br>
