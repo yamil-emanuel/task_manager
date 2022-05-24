@@ -19,6 +19,7 @@ p{
 }
 
 h1{position: relative;
+	font-size: 10vh;
 	top: 50%;
 	transform: translateY(-50%);
 	font-family: Impact;
@@ -30,22 +31,51 @@ p, h3{
 
 }
 
+
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
 .taskcard{
 	margin-left: auto;
 	margin-right: auto;
-
-	background-color: rgb(202, 255, 208);
+	background: rgba(255, 255, 255, 0.23);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
 	max-width: 500px;
 	width: 80%;
 	margin-top: 5vh;
-	border-radius: 25px;
+}
+
+.success{
+	background-color: green;
+}
+.pending{
+	background-color: yellow;
+}
+
+.status_btn, .btn-delete{
+	display: flex;
+	align-items: center;
+	color: white;
+	width: 80%;
+	height: 80%;
+	border-radius: 10%;
+	border: 3px solid black;
+	box-shadow: 5px 5px black;
+
 }
 
 header{
 	margin: 0;
 	height: 10vh;
 	width: 100vw;
+	/*
 	background-color: rgb(251, 217, 96);
+	*/
 }
 
 /* TITLE  */
@@ -125,7 +155,7 @@ input[type="button"]{
 }
 
 .taskcard input {
+	padding: 3%;
 	background-color: rgb(244, 91, 105) !important;
-	border: none;
 	color: white;
 }

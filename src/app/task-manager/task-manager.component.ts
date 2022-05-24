@@ -62,6 +62,9 @@ export class TaskManagerComponent implements OnInit {
   }
 
   setDone(taskId:string){
+    /*
+    INPUT: task.id:string
+    Searchs for the localStorage object, updates it and reloads the stored data (refresh elements)*/
     var t = window.localStorage.getItem(taskId)
     var p = t ? JSON.parse(t):{};
     p.status=true;
