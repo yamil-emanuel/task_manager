@@ -61,6 +61,14 @@ export class TaskManagerComponent implements OnInit {
     window.localStorage.clear()
   }
 
+  setDone(taskId:string){
+    var t = window.localStorage.getItem(taskId)
+    var p = t ? JSON.parse(t):{};
+    p.status=true;
+    window.localStorage.setItem(p.id, JSON.stringify(p))
+    this.getStoredData()
+  }
+
   newTask(title:String, body:String, minutes:String, target_date:String){
     //Input: title, body/description, how long the task is supposed to durate and the target date.
     //Output: Data stored in localStorage + task_list refreshed
@@ -70,7 +78,8 @@ export class TaskManagerComponent implements OnInit {
       body:body,
       saved_date:this.today_string,
       minutes:minutes,
-      target_date:target_date
+      target_date:target_date,
+      status:false
     }
 
     window.localStorage.setItem(data.id , JSON.stringify(data)); //save data
