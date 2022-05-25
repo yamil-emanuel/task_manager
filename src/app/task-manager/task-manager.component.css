@@ -1,9 +1,6 @@
 /*CARD*/
 
-/*
-202, 255, 208
 
-*/
 
 .full_size{
 	width:100%;
@@ -18,12 +15,28 @@ p{
 	margin-bottom: 1vh;
 }
 
+/*
 h1{position: relative;
 	font-size: 10vh;
 	top: 50%;
 	transform: translateY(-50%);
 	font-family: Impact;
 
+}*/
+
+.modal-header{
+	height: 5vh;
+	max-width: 500px;
+	width: 80%;
+}
+.modal-box{
+	text-align: center;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,.3);
 }
 
 p, h3{
@@ -31,6 +44,11 @@ p, h3{
 
 }
 
+h1{
+	font-family: Impact;
+	font-size: 7vh;
+	margin-bottom: 1vh;
+}
 
 .center{
 	margin-left: auto;
@@ -76,6 +94,14 @@ header{
 	/*
 	background-color: rgb(251, 217, 96);
 	*/
+}
+
+#content-box{
+	height: 70vh;
+}
+
+footer{
+	height: 10vh;
 }
 
 /* TITLE  */
@@ -124,13 +150,13 @@ summary {
 
 
 
-#NewTask{
+#modalBox{
 	border: none;
 	text-align: center;
-	max-width: 500px;
-	width: 80%;}
+	color: white;
+}
 
-#NewTask input{
+#modalBox input{
 	width: 50%;
 	padding: 2%;
 	margin: 5%;
@@ -147,7 +173,7 @@ input[type="button"]{
 	border-radius: 3vh;
 }
 
-#NewTask input[type="button"]{
+#modalBox input[type="button"]{
 	background-color: rgb(180, 160, 229) !important;
 	color: white;
 	margin-top: 2vh;
@@ -158,4 +184,13 @@ input[type="button"]{
 	padding: 3%;
 	background-color: rgb(244, 91, 105) !important;
 	color: white;
+}
+
+#taskform{
+	background-color: white;
+	border-radius: 25px;
+	width: 80%;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
 }
