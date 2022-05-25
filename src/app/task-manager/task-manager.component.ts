@@ -123,6 +123,7 @@ export class TaskManagerComponent implements OnInit {
   deleteTask(item:String){
     window.localStorage.removeItem(item.toString()); //delete item
     this.getStoredData() //reset the current task_list
+    this.refresh()
   }
   constructor() { }
 
