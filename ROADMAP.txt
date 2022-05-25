@@ -1,10 +1,2 @@
 ROADMAP
-
-
-Reset form after submit- 
 Swipe left /right
-
-modal window for the form.
-Design
-CALCULAR EL TIEMPO DE TRABAJO 
-<p>Remaining worktime: {{minutes}}"</p>

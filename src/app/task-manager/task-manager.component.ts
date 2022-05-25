@@ -12,13 +12,13 @@ export class TaskManagerComponent implements OnInit {
   minutes= 0; //remaining worktime for the day
   tomorrow=this.getTomorrow(); //tomorrow's day as string
   tasks: any[] = []; 
-  displayModal="none"; //
+  displayModal="none"; //is the modal window active?
+
 
   refresh(){
     this.getStoredData() //retrieve tasks from localStorage
-    this.getWorkTime()
+    this.getWorkTime() 
     this.displayModal="none";
-
   }
 
   ordering_dates( a:any, b:any ){
@@ -37,7 +37,6 @@ export class TaskManagerComponent implements OnInit {
     for (let i = 0; i< this.tasks.length; i++ ){
       if (this.tasks[i].target_date==this.today_string && this.tasks[i].minutes!= "" && this.tasks[i].status == false){
         this.minutes=this.minutes+parseInt(this.tasks[i].minutes);
-        console.log(this.minutes)
       }
     }
   }
@@ -117,7 +116,6 @@ export class TaskManagerComponent implements OnInit {
       target_date:target_date,
       status:false
     }
-
     window.localStorage.setItem(data.id , JSON.stringify(data)); //save data
     this.refresh()
   }

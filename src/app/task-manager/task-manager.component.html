@@ -5,10 +5,7 @@
 <div id="content-box" style="overflow: scroll;">
 	<details class="taskcard" *ngFor="let item of tasks">
 	<table style="width:100%;">
-		<tr style="width:100%;" >
-
-		</tr>
-		<tr >
+		<tr style="width:100%;">
 			<td style="border-top: 2px solid rgba(0,0,0,.2);" >
 				<p style="margin-top:5%;">{{item.body}}</p>
 			</td>
@@ -60,8 +57,8 @@
 </div>
 
 
-<footer>
-	<button class="full_size" (click)="changeModalDisplay()"> FORM </button>
+<footer class="full_size">
+	<button id="newTaskButton" (click)="changeModalDisplay()">+</button>
 </footer>
 
 <div id="modalBox" class="modal-box center" [style.display]="displayModal">
@@ -69,15 +66,16 @@
 		<tr class="full_size">
 			<td style="vertical-align: middle;">
 				<form id="taskform" #taskform>
-					<div class="modal-header center">
-					<input type="button" name="" (click)="changeModalDisplay()">
-				</div>
-					<input #user_date type="date" name="" value="{{today_string}}"><br>
-					<input #user_title type="text" placeholder="¿Qué?"><br>
-					<input #user_description type="text" name="" placeholder="Description"><br>
-					<input #user_minutes type="number" min="0" max="600" step="15" placeholder="Minutos necesarios"><br>
 
-					<input (click)="newTask(user_title.value, user_description.value, user_minutes.value, user_date.value, taskform)"  type="button" value="SEND">
+					<div class="modal-header" >
+						<input type="button" class="exit-btn" (click)="changeModalDisplay()" value="X">
+					</div>
+
+					<input #user_date type="date" value="{{today_string}}" style="margin-top: 1vh;"><br>
+					<input #user_title type="text" placeholder="¿Qué?"><br>
+					<input #user_description type="text" placeholder="Description"><br>
+					<input #user_minutes type="number" min="0" max="600" step="15" placeholder="Minutos necesarios"><br>
+					<input (click)="newTask(user_title.value, user_description.value, user_minutes.value, user_date.value, taskform); this.taskform.reset()"  type="button" value="SEND" style="margin-top:3vh;">
 				</form>
 			</td>
 		</tr>

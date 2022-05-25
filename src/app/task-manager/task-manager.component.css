@@ -15,19 +15,26 @@ p{
 	margin-bottom: 1vh;
 }
 
-/*
-h1{position: relative;
-	font-size: 10vh;
-	top: 50%;
-	transform: translateY(-50%);
-	font-family: Impact;
-
-}*/
 
 .modal-header{
 	height: 5vh;
 	max-width: 500px;
-	width: 80%;
+	text-align: right;
+}
+
+.exit-btn{
+	width: 5vh !important;
+	height: 5vh !important;
+}
+
+#newTaskButton{
+    height: 7vh !important;
+    width: 7vh !important;
+    border-radius: 100% !important;
+    color: black !important;
+    font-size: 5vh;
+	border: 3px solid black;
+	box-shadow: 2px 2px black;
 }
 .modal-box{
 	text-align: center;
