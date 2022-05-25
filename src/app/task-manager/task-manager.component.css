@@ -107,6 +107,16 @@ header{
 	height: 70vh;
 }
 
+#content-box::-webkit-scrollbar {
+  display: none;
+}
+
+#content-box {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
 footer{
 	height: 10vh;
 }
