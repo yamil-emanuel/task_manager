@@ -4,4 +4,6 @@ body{
 	background-color: rgb(213, 179, 255);
 	text-align: center;
 	margin: 0;
+ 	overflow: hidden;
+
 }
