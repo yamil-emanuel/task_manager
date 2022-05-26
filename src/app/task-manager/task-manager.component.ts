@@ -10,10 +10,21 @@ export class TaskManagerComponent implements OnInit {
   today = new Date();  
   today_string = new Date().toISOString().slice(0, 10); 
   minutes= 0; //remaining worktime for the day
+  remainWork=""
   tomorrow=this.getTomorrow(); //tomorrow's day as string
   tasks: any[] = []; //Array of every task object
   displayModal=["none","taskform-in"]; //is the modal window active? -> Controller: changeModalDisplay
   task_deleted:any[]=[]; //Array with every task, allows adding them classes
+
+
+  form = { id:"",
+      title: "",
+      body:"",
+      saved_date:"",
+      minutes:"",
+      target_date:this.today_string,
+      status:""
+    }
 
   refresh(){
     this.getStoredData() //retrieve tasks from localStorage
@@ -34,12 +45,23 @@ export class TaskManagerComponent implements OnInit {
   }
 
   getWorkTime(){
+    /*
+    INPUT: this.task:Array
+    ITERATES OVER THIS.TASK AND RETURNS THE AMOUNT OF REQUIRED MINUTES AS HH:MM.
+    OUTPUT: this.remainWork:String
+    */
+
     this.minutes=0;
     for (let i = 0; i< this.tasks.length; i++ ){
       if (this.tasks[i].target_date==this.today_string && this.tasks[i].minutes!= "" && this.tasks[i].status == false){
         this.minutes=this.minutes+parseInt(this.tasks[i].minutes);
       }
     }
+
+    var hours = Math.floor(this.minutes/60); //hours quant.
+    var min = this.minutes % 60; //module
+
+    this.remainWork =`${hours}:${min}`; 
   }
 
   getStoredData(){
@@ -121,6 +143,17 @@ export class TaskManagerComponent implements OnInit {
       target_date:target_date,
       status:false
     }
+
+    //reset the form
+    this.form = { id:"",
+      title: "",
+      body:"",
+      saved_date:"",
+      minutes:"",
+      target_date:"",
+      status:""
+    }
+
     window.localStorage.setItem(data.id , JSON.stringify(data)); //save data
     this.refresh()
   }
@@ -140,10 +173,24 @@ export class TaskManagerComponent implements OnInit {
       }, 180);
   }
   
+  editTask(taskId:string, index:any){ 
+    var data = this.tasks[index];
+    console.log(data,taskId)
+    /*
+    this.form.title=data.title;
+    this.form.body=data.body
+    this.form.minutes=data.minutes
+    this.form.target_date=data.target_date
+    this.displayModal[0]="block"
+    */
+
+  }
+
   constructor() { }
 
   ngOnInit(): void {
     this.refresh()
+    console.log(this.tasks)
   }
 
 }

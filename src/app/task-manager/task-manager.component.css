@@ -84,7 +84,15 @@ h1{
 	background-color: yellow;
 }
 
-.status_btn, .btn-delete{
+.edit-btn{
+	color: black;
+	background-color: rgba(255,255,255,0.3) !important;
+}
+.btn-delete{
+	background-color: rgb(244, 91, 105) !important;
+}
+
+.status_btn, .card-btn, .btn-delete{
 	display: flex;
 	align-items: center;
 	color: white;
@@ -136,12 +144,6 @@ footer{
 
 }
 
-/* CARD - DELETE BUTTON */
-.taskcard input{
-	width: 30%;
-	margin-bottom: 3vh;
-	margin-top: 1vh;
-}
 
 /* SUMMARY AND DETAILS */
 
@@ -188,6 +190,7 @@ summary {
 }
 
 input[type="button"]{
+	text-align: center;
 	padding: 1%;
 	margin-top: 3vh;
 	margin-bottom: 3vh;
@@ -195,16 +198,18 @@ input[type="button"]{
 }
 
 #modalBox input[type="button"]{
-	background-color: rgb(180, 160, 229) !important;
+	background-color: rgb(180, 160, 229);
 	color: white;
 	margin-top: 2vh;
 	margin-bottom: 2vh;
 }
 
 .taskcard input {
+	margin-bottom: 3vh;
+	margin-top: 1vh;
 	padding: 3%;
-	background-color: rgb(244, 91, 105) !important;
 	color: white;
+	text-align: center !important;
 }
 
 #taskform{
