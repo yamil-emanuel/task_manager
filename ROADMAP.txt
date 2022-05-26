@@ -1,2 +1,5 @@
 ROADMAP
 Swipe left /right
+Editar
+minutes -> hours + minutes (100 -> 1 hour 40")
+Empezar tarea -> activa temporizador y te tira la notificación

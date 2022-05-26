@@ -11,14 +11,15 @@ export class TaskManagerComponent implements OnInit {
   today_string = new Date().toISOString().slice(0, 10); 
   minutes= 0; //remaining worktime for the day
   tomorrow=this.getTomorrow(); //tomorrow's day as string
-  tasks: any[] = []; 
-  displayModal="none"; //is the modal window active?
-
+  tasks: any[] = []; //Array of every task object
+  displayModal=["none","taskform-in"]; //is the modal window active? -> Controller: changeModalDisplay
+  task_deleted:any[]=[]; //Array with every task, allows adding them classes
 
   refresh(){
     this.getStoredData() //retrieve tasks from localStorage
+    this.task_deleted=Array.apply(null, Array(this.tasks.length)).map(Number.prototype.valueOf,0);
     this.getWorkTime() 
-    this.displayModal="none";
+    this.displayModal=["none","taskform-in"];
   }
 
   ordering_dates( a:any, b:any ){
@@ -78,10 +79,14 @@ export class TaskManagerComponent implements OnInit {
   }
 
   changeModalDisplay(){
-    if (this.displayModal=="none"){
-      this.displayModal="block";
+    if (this.displayModal[0]=="none"){
+      this.displayModal=["block","taskform-in"];
     }else{
-      this.displayModal="none";
+      this.displayModal[1]="taskform-out";
+        setTimeout(() => {
+          this.displayModal[0] = "none";
+        }, 180);
+
     }
   }
 
@@ -120,11 +125,21 @@ export class TaskManagerComponent implements OnInit {
     this.refresh()
   }
 
-  deleteTask(item:String){
-    window.localStorage.removeItem(item.toString()); //delete item
-    this.getStoredData() //reset the current task_list
-    this.refresh()
+  deleteTask(item:String, task_deleted_index:any){
+    /*
+    INPUT: item id (for localStorage) and task_deleted array's index.
+    Runs the task-deleted animation and after 180ms removes the data from the db and reloads everything.
+    */
+    this.task_deleted[task_deleted_index] = "task-deleted";
+
+      setTimeout(() => {
+        window.localStorage.removeItem(item.toString()); //delete item
+        this.getStoredData() //reset the current task_list
+        this.refresh()
+        this.task_deleted[task_deleted_index]=""
+      }, 180);
   }
+  
   constructor() { }
 
   ngOnInit(): void {

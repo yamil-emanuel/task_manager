@@ -73,6 +73,8 @@ h1{
 	max-width: 500px;
 	width: 80%;
 	margin-top: 5vh;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
 }
 
 .success{
@@ -171,6 +173,8 @@ summary {
 	border: none;
 	text-align: center;
 	color: white;
+	animation-duration: 0.4s;
+	animation-fill-mode: forwards;
 }
 
 #modalBox input{
@@ -210,4 +214,34 @@ input[type="button"]{
 	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
+  	animation-duration: 0.5s;
+  	animation-fill-mode: forwards;
+}
+
+
+@keyframes taskform-in {
+	0%{transform: translateY(80vh) scale(0) rotate(-45deg);
+	}
+
+	30%{opacity: 0%;}
+
+	100%{
+		transform: translateY(0) scale(1.0) rotate(0deg);
+		opacity: 100%;
+	}
+}
+
+@keyframes taskform-out{
+	0%{transform: translateY(0) scale(1.0) rotate(0);
+		opacity: 100%;}
+
+	70%{transform: translateY(80vh) scale(0.3) rotate(45deg);
+		opacity: 0%;}
+
+	100%{transform: scale(0);}
+}
+
+@keyframes task-deleted{
+	0%{ transform: translateX(0) rotate(0deg); }
+	100%{transform: translateX(-100vw) rotate(-45deg);}
 }

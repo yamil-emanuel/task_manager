@@ -2,8 +2,8 @@
 	<h1>TO DO LIST</h1>
 	<p>Remaining working time: {{minutes}}"</p>
 </header>
-<div id="content-box" style="overflow: scroll;">
-	<details class="taskcard" *ngFor="let item of tasks">
+<div id="content-box" style="overflow: scroll; margin-top: 3vh; margin-bottom: 3vh;">
+	<details [style.animation-name]="task_deleted[i]" class="taskcard" *ngFor="let item of tasks ; let i = index">
 	<table style="width:100%;">
 		<tr style="width:100%;">
 			<td style="border-top: 2px solid rgba(0,0,0,.2);" >
@@ -49,7 +49,7 @@
 			</table>
 		</summary>
 		<div class="full_size">
-			<input type="button" (click)="deleteTask(item.id)" class="btn-delete center" value="DELETE">
+			<input type="button" (click)="deleteTask(item.id,i)" class="btn-delete center" value="DELETE">
 		</div>
 
 </details> 
@@ -61,11 +61,11 @@
 	<button id="newTaskButton" (click)="changeModalDisplay()">+</button>
 </footer>
 
-<div id="modalBox" class="modal-box center" [style.display]="displayModal">
+<div id="modalBox" class="modal-box center" [style.display]="displayModal[0]">
 	<table class="full_size">
 		<tr class="full_size">
 			<td style="vertical-align: middle;">
-				<form id="taskform" #taskform>
+				<form id="taskform" [style.animation-name]="displayModal[1]" #taskform>
 
 					<div class="modal-header" >
 						<input type="button" class="exit-btn" (click)="changeModalDisplay()" value="X">
