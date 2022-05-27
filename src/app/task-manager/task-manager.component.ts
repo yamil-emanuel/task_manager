@@ -14,6 +14,7 @@ export class TaskManagerComponent implements OnInit {
   tomorrow=this.getTomorrow(); //tomorrow's day as string
   tasks: any[] = []; //Array of every task object
   displayModal=["none","taskform-in"]; //is the modal window active? -> Controller: changeModalDisplay
+  displayUpdateModal=["none","taskform-in"]
   task_deleted:any[]=[]; //Array with every task, allows adding them classes
 
 
@@ -23,7 +24,7 @@ export class TaskManagerComponent implements OnInit {
       saved_date:"",
       minutes:"",
       target_date:this.today_string,
-      status:""
+      status:false
     }
 
   refresh(){
@@ -144,15 +145,7 @@ export class TaskManagerComponent implements OnInit {
       status:false
     }
 
-    //reset the form
-    this.form = { id:"",
-      title: "",
-      body:"",
-      saved_date:"",
-      minutes:"",
-      target_date:"",
-      status:""
-    }
+    this.formReset()
 
     window.localStorage.setItem(data.id , JSON.stringify(data)); //save data
     this.refresh()
@@ -173,24 +166,73 @@ export class TaskManagerComponent implements OnInit {
       }, 180);
   }
   
-  editTask(taskId:string, index:any){ 
-    var data = this.tasks[index];
-    console.log(data,taskId)
-    /*
-    this.form.title=data.title;
-    this.form.body=data.body
-    this.form.minutes=data.minutes
-    this.form.target_date=data.target_date
-    this.displayModal[0]="block"
-    */
+  formReset(){
+    this.form = { id:"",
+      title: "",
+      body:"",
+      saved_date:"",
+      minutes:"",
+      target_date:this.today_string,
+      status:false
+    }
+  }
 
+  showEditTask(taskId:string, index:any){ 
+
+    this.formReset() //reseting the form
+
+    //if the modal is hidden...
+    if (this.displayUpdateModal[0]=="none"){
+      var data = this.tasks[index];
+
+      //filling the form
+      this.form.id=data.id
+      this.form.title=data.title;
+      this.form.body=data.body;
+      this.form.minutes=data.minutes;
+      this.form.target_date=data.target_date;
+      this.form.status=false;
+
+      //showing the form
+      this.displayUpdateModal=["block","taskform-in"];
+
+    //closing the modal & reseting the form
+    }else if (taskId=="close"){
+      this.displayUpdateModal[1]="taskform-out";
+        setTimeout(() => {
+          this.formReset()
+          this.displayUpdateModal[0] = "none";
+        }, 180);
+
+    }
+  }
+    
+
+  updateTask(title:string, body:string, minutes:string, target_date:string, form:Object){
+    var id = this.form.id //retriving taskId
+
+    //updating the form
+    this.form.title=title;
+    this.form.body=body;
+    this.form.minutes=minutes;
+    this.form.target_date=target_date;
+
+    //updating the data
+    window.localStorage.setItem(id.toString(), JSON.stringify(this.form)); //update
+    
+    this.displayUpdateModal[1]="taskform-out";
+    setTimeout(() => {
+      this.formReset()
+      this.displayUpdateModal[0] = "none";
+    }, 180);
+    this.refresh()
   }
 
   constructor() { }
 
   ngOnInit(): void {
+    //this.clearDataBase()
     this.refresh()
-    console.log(this.tasks)
   }
 
 }
